@@ -11,7 +11,7 @@ const largeILand = ["battery"]
 
 let allProblem = []
 
-const onDynamicIslandStateChange = (leftData, rightData, app) => {
+const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
     if (dynamicIslandStateToggle) return;
 
     if (app.includes(largeILand)) {
@@ -35,8 +35,22 @@ const onDynamicIslandStateChange = (leftData, rightData, app) => {
         }, 250);
     } else {
         dynamicIsland.classList.add("on-state");
+
+        if (app === "normal") {
+            // statusRight.children[1].style.animation = "state-appear-reverse 0.25s forwards";
+
+            // setTimeout(() => {
+                statusRight.children[0].style.animation = "bouncing 1s forwards";
+                statusRight.children[1].style.animation = "status-icon-disappear 1s forwards";
+                statusRight.children[2].style.animation = "bouncing 1s forwards";
+            // }, 250);
+        }
     }
-    document.getElementById("battery").classList.add("active");
+
+
+    if (app === "")
+        document.getElementById(app).classList.add("active");
+
 
     setTimeout(() => {
     dynamicIsland.innerHTML = `
@@ -47,7 +61,7 @@ const onDynamicIslandStateChange = (leftData, rightData, app) => {
         <p>${rightData}</p>
       </div>
       `;
-    }, 500)
+    }, 250)
 
     dynamicIslandStateToggle = true;
 
@@ -55,11 +69,13 @@ const onDynamicIslandStateChange = (leftData, rightData, app) => {
     // On time out!
     if (dynamicIslandStateToggle) {
         setTimeout(() => {
-            if (app.includes(largeILand)) {
-                dynamicIsland.style.position = "relative"
+            
 
+            if (app.includes(largeILand)) {
                 statusLeft.style.animation = "none";
                 statusRight.style.animation = "none";
+
+                dynamicIsland.style.position = "relative"
 
                 statusLeft.style.animation = "state-appear 0.25s";
                 statusRight.style.animation = "state-appear 0.25s";
@@ -69,27 +85,44 @@ const onDynamicIslandStateChange = (leftData, rightData, app) => {
 
                 statusLeft.style.opacity = "1";
                 statusRight.style.opacity = "1";
+            } else {
+                if (app === "normal") {
+                    // statusRight.children[1].style.animation = "state-appear 0.25s forwards";
+
+                    // setTimeout(() => {
+                        statusRight.children[1].style.animation = "status-icon-appear .5s forwards";
+                    // }, 250);
+                }
             }
 
             document.getElementById("left-data").classList.add("exit");
             document.getElementById("right-data").classList.add("exit");
+
+            statusLeft.style.animation = "bouncing 1s forwards";
+            statusRight.children[0].style.animation = "bouncing 1s forwards";
+            statusRight.children[2].style.animation = "bouncing 1s forwards";
+
             setTimeout(() => {
                 dynamicIsland.innerHTML = `
             `;
                 statusLeft.style.animation = "none";
                 statusRight.style.animation = "none";
-            }, 500);
+
+                statusRight.children[0].style.animation = "none";
+                statusRight.children[1].style.animation = "none";
+                statusRight.children[2].style.animation = "none";
+            }, 1000);
 
             dynamicIsland.classList.remove("on-state");
             dynamicIsland.classList.remove("on-state-lg");
 
-            document.getElementById("battery").classList.remove("active");
+            if (app === "") document.getElementById(app).classList.remove("active");
 
             // document.getElementById("left-data").classList.remove("exit");
             // document.getElementById("right-data").classList.remove("exit");
 
             dynamicIslandStateToggle = false;
-        }, 3000);
+        }, duration);
     }
 };
 
@@ -144,7 +177,7 @@ navigator.getBattery().then(battery => {
         if (battery.charging) {
             console.log("charging...")
             batteryNumber.classList.add("charging")
-            onDynamicIslandStateChange('Charging', `<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`, 'battery')
+            onDynamicIslandStateChange('Charging', `<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`, 'battery', 3000)
         } else {
             console.log("not charging...")
             batteryNumber.classList.remove("charging")

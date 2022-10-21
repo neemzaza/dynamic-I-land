@@ -53,11 +53,15 @@
     url("fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.svg#San Francisco Display Bold") format("svg");
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "San Francisco Display Medium";
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .screen {
@@ -286,10 +290,14 @@ body {
 }
 
 .status-icon {
-  margin-right: 0.5rem;
+  margin-right: 0.33rem;
   color: #fff;
   position: relative;
   top: 0.5rem;
+  transition: .5s;
+  display: block;
+  width: auto;
+  overflow: hidden;
 }
 
 #battery-number {
@@ -340,4 +348,68 @@ body {
 
 .problem {
   visibility: hidden;
+  color: red;
+}
+
+@keyframes status-icon-disappear {
+  0% {
+    width: 20px;
+    filter: blur(0);
+      transform: scale(1);
+      opacity: 1;
+  } 100% {
+    width: 0px;
+    filter: blur(12px);
+      transform: scale(0.8);
+      opacity: 0;
+  }
+}
+
+@keyframes status-icon-appear {
+  0% {
+    width: 0px;
+    filter: blur(12px);
+    transform: scale(0.8);
+    opacity: 0;
+    
+  } 100% {
+    width: 20px;
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    margin-left: 0;  
+  } 25% {
+    margin-left: 0.25rem;  
+  } 100% {
+    margin-left: 0;  
+  }
+}
+
+.custom-zone input {
+  border: none;
+  padding: .5rem;
+  border-radius: 2rem;
+  background: #000;
+  color: #fff;
+  transition: .5s;
+  outline: none;
+  width: 6rem;
+  margin-bottom: 1rem;
+  
+}
+
+.custom-zone input:focus {
+  width: 10rem;
+}
+
+.custom-zone button {
+  padding: .5rem;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
 }

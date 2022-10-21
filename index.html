@@ -17,7 +17,15 @@
   </head>
   <body>
     <div class="title">
-      <h1>Welcome to Dynamic I-land</h1>
+      <h1 id="view">Welcome to Dynamic I-land</h1>
+      <p>
+        Made by 
+        <a href="https://it-airwavy.netlify.app/" target="_blank">Airwavy!!</a>, 
+        <a href="https://youtube.com/@SarutAirwavy" target="_blank">YouTube</a>, 
+        <a href="https://github.com/neemzaza/dynamic-i-land" target="_blank">Github</a>
+        with static HTML, custom CSS and custom JavaScript.
+      </p>
+      
       <section class="problem" id="problem">
         <p>Oops! Your browser had some problem to:</p>
         <ul>
@@ -46,7 +54,7 @@
         <div class="app-section">
           <div
           class="app"
-          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery')"
+          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery', 3000)"
           id="battery"
         >
           <i class="bi bi-battery-charging"></i>
@@ -59,19 +67,28 @@
       <div class="custom-zone">
         <div class="container">
           <h4>Custom Dynamic I-land</h4>
+          <label>Left and Right Data (Can use <a href="https://icons.getbootstrap.com/" target="_blank">bootstrap icons</a>)</label>
+          <br>
           <input type="text" onchange="onChangeValue()" id="left-side" placeholder="Left side data"/>
-          <input type="text" id="right-side" placeholder="Right side data"/>
+          <input type="text" onchange="onChangeValue()" id="right-side" placeholder="Right side data"/>
+          <br>
           <label>Type (0 = normal I-land, 1 = charging I-land)</label>
-          <input type="number" placeholder="0 or 1?" id="type-i-land">
+          <input type="number" onchange="onChangeValue()" placeholder="0 or 1?" id="type-i-land">
+          <br>
+          <label>Duration (Seconds)</label>
+          <input type="number" onchange="onChangeValue()" placeholder="17" id="duration"><label>seconds</label>
 
           <p>Summary:</p>
           <ul>
-            <li>Left Side: <span id="left-side-show">ss</span></li>
-            <li>Right Side: <span id="right-side-show">ss</span></li>
-            <li>Type: <span id="type-i-land-show">Normal</span></li>
+            <li><i class="bi bi-border-left"></i> Left Side: <span id="left-side-show"></span></li>
+            <li><i class="bi bi-border-right"></i> Right Side: <span id="right-side-show"></span></li>
+            <li><i class="bi bi-question-lg"></i> Type: <span id="type-i-land-show"></span></li>
+            <li><i class="bi bi-stopwatch"></i> Duration: <span id="duration-show"></span></li>
           </ul>
 
-          <button>Execute!</button>
+          <a href="#dynamic-island">
+            <button onclick="onExecuteDynamicILand()">Execute!</button>
+          </a>
         </div>
       </div>
     </div>
