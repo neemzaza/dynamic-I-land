@@ -1,0 +1,315 @@
+@font-face {
+  font-family: "San Francisco Display Ultralight";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.eot?#iefix) format("embedded-opentype"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2) format("woff2"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff) format("woff"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.ttf) format("truetype"),
+    url("fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.svg#San Francisco Display Ultralight") format("svg");
+}
+
+@font-face {
+  font-family: "San Francisco Display Thin";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.eot?#iefix) format("embedded-opentype"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2) format("woff2"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff) format("woff"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.ttf) format("truetype"),
+    url("fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.svg#San Francisco Display Thin") format("svg");
+}
+
+@font-face {
+  font-family: "San Francisco Display Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.eot?#iefix) format("embedded-opentype"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2) format("woff2"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff) format("woff"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.ttf) format("truetype"),
+    url("fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.svg#San Francisco Display Medium") format("svg");
+}
+
+@font-face {
+  font-family: "San Francisco Display Semibold";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.eot?#iefix) format("embedded-opentype"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2) format("woff2"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff) format("woff"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.ttf) format("truetype"),
+    url("fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.svg#San Francisco Display Semibold") format("svg");
+}
+
+@font-face {
+  font-family: "San Francisco Display Bold";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.eot?#iefix) format("embedded-opentype"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2) format("woff2"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff) format("woff"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.ttf) format("truetype"),
+    url("fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.svg#San Francisco Display Bold") format("svg");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "San Francisco Display Medium";
+}
+
+.screen {
+  width: 25rem;
+  height: 90vh;
+  padding: 0.75rem;
+  background: rgb(196, 124, 255);
+  border-radius: 3.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: .5s;
+  border: 0.8rem solid #000;
+  overflow: hidden;
+}
+
+.dynamic-island {
+  width: 7rem;
+  height: 2rem;
+  background: #000;
+  border-radius: 2rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.5s;
+  color: #fff;
+  visibility: visible;
+}
+
+.dynamic-island:hover {
+  transform: translateX(-50%) scaleX(1.05) scaleY(1.1);
+}
+
+.dynamic-island.on-state {
+  width: 15.5rem;
+}
+
+.dynamic-island.on-state-lg {
+  width: 22rem;
+}
+
+@keyframes state-appear {
+  0% {
+    filter: blur(12px);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dynamic-island .left-data {
+  position: absolute;
+  top: -0.35rem;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  filter: blur(12px);
+  transform: scale(0.8);
+  opacity: 0;
+  animation: state-appear 0.5s forwards;
+}
+
+.dynamic-island .right-data {
+  position: absolute;
+  right: 0;
+  top: -0.35rem;
+  text-align: right;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  filter: blur(12px);
+  transform: scale(0.8);
+  opacity: 0;
+  animation: state-appear 0.5s forwards;
+}
+
+.dynamic-island .left-data.exit {
+  animation: state-appear 0.5s reverse;
+}
+
+.dynamic-island .right-data.exit {
+  animation: state-appear 0.5s reverse;
+}
+
+.dynamic-island .left-data .green,
+.dynamic-island .right-data .green {
+  color: rgb(0, 203, 47);
+}
+
+.dynamic-island .left-data .bi,
+.dynamic-island .right-data .bi {
+  transform: scale(2);
+}
+
+.menu {
+  position: relative;
+  top: 3rem;
+  /* padding-left: 1rem; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 1rem;
+  transition: .5s;
+}
+
+
+.menu .app {
+  border: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.menu .app-section {
+  position: relative;
+  text-align: center;
+}
+
+.menu .app-section p {
+  margin: 0;
+  position: relative;
+  font-size: 0.75rem;
+}
+
+.menu .app:hover {
+  cursor: pointer;
+  transform: scale(1.125);
+}
+
+.menu .app:active {
+  transform: scale(0.8);
+}
+
+.menu .app.active {
+  background: rgb(0, 203, 47);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  transition: .5s;
+}
+
+.status-left {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: .5s;
+  filter: blur(0);
+  transform: scale(1);
+  overflow: hidden;
+  opacity: 1;
+}
+
+@keyframes state-appear-reverse {
+  from {
+    filter: blur(12px);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.status-left.exit {
+  animation: state-appear 0.25s reverse;
+}
+
+.status-left p {
+  position: relative;
+  top: -0.5rem;
+  color: #fff;
+  /* left: 50%; */
+}
+
+.status-left.appear {
+  animation: state-appear 0.5s forwards;
+}
+
+.status-right {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: .5s;
+  filter: blur(0);
+  transform: scale(1);
+  opacity: 1;
+  display: inline-flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.status-right.appear {
+  animation: state-appear 0.5s forwards;
+}
+
+.status-right.exit {
+  animation: state-appear 0.25s reverse;
+}
+
+.status-icon {
+  margin-right: 0.5rem;
+  color: #fff;
+  position: relative;
+  top: 0.5rem;
+}
+
+#battery-number {
+  /* padding: 0.5rem; */
+  background: #fff;
+  border-radius: 0.33rem;
+  color: #000;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-size: 0.75rem;
+  position: relative;
+  top: -0.125rem;
+  height: 1rem;
+  min-width: 1.2rem;
+  white-space: nowrap;
+}
+
+#battery-number::before {
+  content: "";
+  width: 0.125rem;
+  height: 40%;
+  position: absolute;
+  background: #fff;
+  border-radius: 0 50% 50% 0;
+  right: -0.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#battery-number.charging {
+  background: rgb(0, 203, 47);
+  color: #fff;
+}
+
+#battery-number.charging::before {
+  background: rgb(0, 203, 47);
+}
+
+#battery-number .bi {
+  font-size: 0.5rem;
+  position: relative;
+  top: -0.0625rem;
+} 
