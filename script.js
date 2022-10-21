@@ -3,9 +3,13 @@ let dynamicIsland = document.getElementById("dynamic-island");
 let statusLeft = document.getElementById("status-left");
 let statusRight = document.getElementById("status-right");
 
+const problem = document.getElementById("problem")
+
 let dynamicIslandStateToggle = false;
 
 const largeILand = ["battery"]
+
+let allProblem = []
 
 const onDynamicIslandStateChange = (leftData, rightData, app) => {
     if (dynamicIslandStateToggle) return;
@@ -16,8 +20,8 @@ const onDynamicIslandStateChange = (leftData, rightData, app) => {
         statusLeft.style.animation = "none";
         statusRight.style.animation = "none";
 
-        statusLeft.style.animation = "state-appear 0.25s reverse";
-        statusRight.style.animation = "state-appear 0.25s reverse";
+        statusLeft.style.animation = "state-appear-reverse 0.25s forwards";
+        statusRight.style.animation = "state-appear-reverse 0.25s forwards";
 
         statusLeft.style.visibility = "hidden";
         statusRight.style.visibility = "hidden";
@@ -89,12 +93,16 @@ const onDynamicIslandStateChange = (leftData, rightData, app) => {
     }
 };
 
-let date = new Date();
 let time = document.getElementById("time")
 
-setInterval(() => {
+const executeTime = () => {
+    let date = new Date();
     time.innerText = date.getHours() + ":" + (date.getMinutes().toString().length === 1 ? "0" + date.getMinutes() : date.getMinutes())
-}, 1000)
+}
+
+executeTime()
+
+setInterval(() => executeTime(), 1000)
 
 let batteryLevel = 0;
 
@@ -102,10 +110,20 @@ const batteryNumber = document.getElementById("battery-number");
 
 window.onload = () => {
     if (!navigator.getBattery) {
-        alert("Battery detect status not supported in your browser, Sorry!");
+        allProblem.push("Battery detect status not supported in your browser");
+
+        if (allProblem.length > 0) {
+            problem.style.visibility = "visible"
+            problem.children.item(1).innerHTML += `<li>${allProblem[0]}</li>`
+        }
+
         return false;
     }
 }
+
+
+
+// Battery Worker
 
 navigator.getBattery().then(battery => {
     const updateBatteryLevel = () => {

@@ -16,7 +16,15 @@
     <title>Static Template</title>
   </head>
   <body>
-    <h1>Welcome to Dynamic I-land</h1>
+    <div class="title">
+      <h1>Welcome to Dynamic I-land</h1>
+      <section class="problem" id="problem">
+        <p>Oops! Your browser had some problem to:</p>
+        <ul>
+
+        </ul>
+      </section>
+    </div>
     <div class="screen">
       <div class="grid">
         <div class="status-left" id="status-left">
@@ -30,64 +38,40 @@
         <div class="status-right" id="status-right">
           <i class="status-icon bi bi-reception-4"></i>
           <i class="status-icon bi bi-wifi"></i>
-          <p id="battery-number"></p>
+          <p id="battery-number">100</p>
         </div>
       </div>
 
       <div class="menu">
         <div class="app-section">
-          <button
+          <div
           class="app"
           onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery')"
           id="battery"
         >
           <i class="bi bi-battery-charging"></i>
-        </button>
+        </div>
         <p>Battery</p>
         </div>
 
-        <div class="app-section">
-          <button
-          class="app"
-          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery')"
-          id="battery"
-        >
-          <i class="bi bi-battery-charging"></i>
-        </button>
-        <p>Battery</p>
-        </div>
+        
+      </div>
+      <div class="custom-zone">
+        <div class="container">
+          <h4>Custom Dynamic I-land</h4>
+          <input type="text" onchange="onChangeValue()" id="left-side" placeholder="Left side data"/>
+          <input type="text" id="right-side" placeholder="Right side data"/>
+          <label>Type (0 = normal I-land, 1 = charging I-land)</label>
+          <input type="number" placeholder="0 or 1?" id="type-i-land">
 
-        <div class="app-section">
-          <button
-          class="app"
-          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery')"
-          id="battery"
-        >
-          <i class="bi bi-battery-charging"></i>
-        </button>
-        <p>Battery</p>
-        </div>
+          <p>Summary:</p>
+          <ul>
+            <li>Left Side: <span id="left-side-show">ss</span></li>
+            <li>Right Side: <span id="right-side-show">ss</span></li>
+            <li>Type: <span id="type-i-land-show">Normal</span></li>
+          </ul>
 
-        <div class="app-section">
-          <button
-          class="app"
-          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery')"
-          id="battery"
-        >
-          <i class="bi bi-battery-charging"></i>
-        </button>
-        <p>Battery</p>
-        </div>
-
-        <div class="app-section">
-          <button
-          class="app"
-          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery')"
-          id="battery"
-        >
-          <i class="bi bi-battery-charging"></i>
-        </button>
-        <p>Battery</p>
+          <button>Execute!</button>
         </div>
       </div>
     </div>
@@ -98,4 +82,5 @@
   </script>
 
   <script src="script.js"></script>
+  <script src="execute.js"></script>
 </html>

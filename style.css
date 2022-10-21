@@ -57,11 +57,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: "San Francisco Display Medium";
+  overflow: hidden;
 }
 
 .screen {
   width: 25rem;
-  height: 90vh;
+  height: 52rem;
   padding: 0.75rem;
   background: rgb(196, 124, 255);
   border-radius: 3.5rem;
@@ -70,7 +71,7 @@ body {
   transform: translateX(-50%);
   transition: .5s;
   border: 0.8rem solid #000;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .dynamic-island {
@@ -166,13 +167,31 @@ body {
 
 
 .menu .app {
-  border: none;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 1rem;
+  padding: .5rem;
+  border-radius: 1.2rem;
   font-size: 2rem;
-  text-align: center;
-  transition: 0.5s;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #fff;
+  transition: .5s;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.menu .app:hover {
+  cursor: pointer;
+  transform: translateX(-50%) scale(1.125);
+ 
+}
+
+.menu .app:active {
+  transform: translateX(-50%) scale(0.8);
+}
+
+.menu .app .bi {
+  
 }
 
 .menu .app-section {
@@ -186,17 +205,17 @@ body {
   font-size: 0.75rem;
 }
 
-.menu .app:hover {
-  cursor: pointer;
-  transform: scale(1.125);
-}
-
-.menu .app:active {
-  transform: scale(0.8);
-}
-
 .menu .app.active {
   background: rgb(0, 203, 47);
+}
+
+.custom-zone {
+  position: relative;
+  top: 3rem;
+}
+
+.custom-zone .container {
+  padding: 1rem;
 }
 
 .grid {
@@ -218,15 +237,16 @@ body {
 
 @keyframes state-appear-reverse {
   from {
-    filter: blur(12px);
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
     filter: blur(0);
     transform: scale(1);
     opacity: 1;
+  }
+
+  to {
+    
+    filter: blur(12px);
+    transform: scale(0.8);
+    opacity: 0;
   }
 }
 
@@ -313,3 +333,11 @@ body {
   position: relative;
   top: -0.0625rem;
 } 
+
+.title {
+  text-align: center;
+}
+
+.problem {
+  visibility: hidden;
+}
