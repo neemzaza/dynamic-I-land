@@ -21,7 +21,7 @@ const onChangeValue = () => {
 
     leftSideElement.innerText = leftSideInput.value;
     rightSideElement.innerText = rightSideInput.value;
-    typeElement.innerText = typeInput.value;
+    typeElement.innerText = (typeInput.value == 0 ? "Normal" : typeInput.value == 1 ? "Medium" : typeInput.value == 2 ? "Large" : "???");
     durationElement.innerText = parseInt(durationInput.value) + " seconds";
 }
 
@@ -31,10 +31,14 @@ const onExecuteDynamicILand = () => {
     }
 
     let typeString = "";
-    if (type == 1) {
+    if (type == 0) {
+        typeString = "normal";
+    } else if (type == 1) {
+        typeString = "slient";
+    } else if (type == 2) {
         typeString = "battery";
     } else {
-        typeString = "normal";
+        return;
     }
     onDynamicIslandStateChange(leftSide, rightSide, typeString, (duration * 1000))
 }

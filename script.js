@@ -1,68 +1,90 @@
+// Element getting (index.html)
 let dynamicIsland = document.getElementById("dynamic-island");
 
 let statusLeft = document.getElementById("status-left");
 let statusRight = document.getElementById("status-right");
 
 const problem = document.getElementById("problem")
+// ============================
 
+// If this set to true, onDynamicIslandStateChange() function is not active until this variable set to false again.
 let dynamicIslandStateToggle = false;
 
+// keyword!
 const largeILand = ["battery"]
+const mediumILand = ["slient"]
 
+// All problem (Array)
 let allProblem = []
 
+// Dynamic i-land active function!
 const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
     if (dynamicIslandStateToggle) return;
 
+    // Active large i-land
     if (app.includes(largeILand)) {
         
-
+        // Status Bar Reset Animation
         statusLeft.style.animation = "none";
         statusRight.style.animation = "none";
 
+        // Status Bar Disappear animation
         statusLeft.style.animation = "state-appear-reverse 0.25s forwards";
         statusRight.style.animation = "state-appear-reverse 0.25s forwards";
 
+        // Status Bar Completely Hidden
         statusLeft.style.visibility = "hidden";
         statusRight.style.visibility = "hidden";
 
+        // Status Bar Completely Hidden (2)
         statusLeft.style.opacity = "0";
         statusRight.style.opacity = "0";
 
+        // Activating I-land 250ms
         setTimeout(() => {
             dynamicIsland.classList.add("on-state-lg");
             dynamicIsland.style.position = "absolute"
         }, 250);
+
+    // Active medium i-land
+    } else if (app.includes(mediumILand)) {
+        // Activating I-land
+        dynamicIsland.classList.add("on-state-md");
+
+        // Status Bar Disappear animation
+        statusRight.children[0].style.animation = "status-icon-disappear 1s forwards";
+        statusRight.children[1].style.animation = "status-icon-disappear 1s forwards";
+        // Status Bar Bouncing animation
+        statusRight.children[2].style.animation = "bouncing 1s forwards";
+        
     } else {
+        // Activating I-land
         dynamicIsland.classList.add("on-state");
 
         if (app === "normal") {
-            // statusRight.children[1].style.animation = "state-appear-reverse 0.25s forwards";
-
-            // setTimeout(() => {
-                statusRight.children[0].style.animation = "bouncing 1s forwards";
-                statusRight.children[1].style.animation = "status-icon-disappear 1s forwards";
-                statusRight.children[2].style.animation = "bouncing 1s forwards";
-            // }, 250);
+            // Status Bar Disappear animation
+            statusRight.children[0].style.animation = "bouncing 1s forwards";
+            // Status Bar Bouncing animation
+            statusRight.children[1].style.animation = "status-icon-disappear 1s forwards";
+            // Status Bar Disappear animation
+            statusRight.children[2].style.animation = "bouncing 1s forwards";
         }
+
     }
 
-
-    if (app === "")
-        document.getElementById(app).classList.add("active");
-
-
+    // Showing Info in dynamic i-land 250ms
     setTimeout(() => {
-    dynamicIsland.innerHTML = `
-      <div class="left-data" id="left-data">
-        <p>${leftData}</p>
-      </div>
-      <div class="right-data" id="right-data">
-        <p>${rightData}</p>
-      </div>
-      `;
+        dynamicIsland.innerHTML = `
+        <div class="left-data" id="left-data">
+            <p>${leftData}</p>
+        </div>
+        <div class="right-data" id="right-data">
+            <p>${rightData}</p>
+        </div>
+        `;
     }, 250)
 
+    // Set status to active!
     dynamicIslandStateToggle = true;
 
 
@@ -85,6 +107,12 @@ const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
 
                 statusLeft.style.opacity = "1";
                 statusRight.style.opacity = "1";
+            } else if (app.includes(mediumILand)) {
+                dynamicIsland.classList.remove("on-state-md");
+        
+                statusRight.children[0].style.animation = "status-icon-appear 1s forwards";
+                statusRight.children[1].style.animation = "status-icon-appear 1s forwards";
+                
             } else {
                 if (app === "normal") {
                     // statusRight.children[1].style.animation = "state-appear 0.25s forwards";
@@ -92,6 +120,9 @@ const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
                     // setTimeout(() => {
                         statusRight.children[1].style.animation = "status-icon-appear .5s forwards";
                     // }, 250);
+                }
+                if (app === "medium") {
+                    
                 }
             }
 
@@ -111,6 +142,8 @@ const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
                 statusRight.children[0].style.animation = "none";
                 statusRight.children[1].style.animation = "none";
                 statusRight.children[2].style.animation = "none";
+
+                dynamicIslandStateToggle = false;
             }, 1000);
 
             dynamicIsland.classList.remove("on-state");
@@ -121,11 +154,12 @@ const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
             // document.getElementById("left-data").classList.remove("exit");
             // document.getElementById("right-data").classList.remove("exit");
 
-            dynamicIslandStateToggle = false;
+            
         }, duration);
     }
 };
 
+// Time (real-time change by setInterval function!)
 let time = document.getElementById("time")
 
 const executeTime = () => {
@@ -136,7 +170,9 @@ const executeTime = () => {
 executeTime()
 
 setInterval(() => executeTime(), 1000)
+// ================================================
 
+// Battery gettings (Not working some browser!)
 let batteryLevel = 0;
 
 const batteryNumber = document.getElementById("battery-number");
@@ -194,3 +230,4 @@ navigator.getBattery().then(battery => {
     console.log(battery)
 })
 
+// ================================================
