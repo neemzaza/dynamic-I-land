@@ -34,7 +34,8 @@
       </section>
     </div>
     <div class="screen" id="screen">
-      <div class="grid">
+      
+      <div class="grid status-bar">
         <div class="status-left" id="status-left">
           <p id="time"></p>
         </div>
@@ -50,82 +51,86 @@
         </div>
       </div>
 
-      <div class="menu">
-        <div class="app-section">
-          <div
-          class="app"
-          onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery', 3000)"
-          id="battery"
-        >
-          <i class="bi bi-battery-charging"></i>
+      <div class="scrollable">
+        
+  
+        <div class="menu">
+          <div class="app-section">
+            <div
+            class="app"
+            onclick="onDynamicIslandStateChange('Charging',`<div class='green'><i class='bi bi-battery-half'></i> ${batteryLevel}%</div>`,'battery', 3000)"
+            id="battery"
+          >
+            <i class="bi bi-battery-charging"></i>
+          </div>
+          <p>Battery</p>
+          </div>
+  
+          <div class="app-section">
+            <div
+            class="app"
+            onclick="onToggleApp('i-land')"
+            id="i-land-app"
+          >
+          <i class="icon-dynamic bi bi-capsule"></i>
+          </div>
+          <p>Dynamic I-Land</p>
+          </div>
+  
+          <div class="app-section">
+            <div
+            class="app"
+            onclick="onToggleApp('settings')"
+            id="settings-app"
+          >
+          <i class="bi bi-gear-wide-connected"></i>
+          </div>
+          <p>Settings</p>
+          </div>
+  
         </div>
-        <p>Battery</p>
-        </div>
-
-        <div class="app-section">
-          <div
-          class="app"
-          onclick="onToggleApp('i-land')"
-          id="i-land-app"
-        >
-        <i class="icon-dynamic bi bi-capsule"></i>
-        </div>
-        <p>Dynamic I-Land</p>
-        </div>
-
-        <div class="app-section">
-          <div
-          class="app"
-          onclick="onToggleApp('settings')"
-          id="settings-app"
-        >
-        <i class="bi bi-gear-wide-connected"></i>
-        </div>
-        <p>Settings</p>
-        </div>
-
-      </div>
-
-      <div class="custom-zone content" id="i-land-content">
-        <div class="container">
-          <h4>Custom Dynamic I-land</h4>
-          <button onclick="onExecuteDynamicILand()">Execute!</button>
-          <br>
-          <hr>
-          <label>Left and Right Data (Can use <a href="https://icons.getbootstrap.com/" target="_blank">bootstrap icons</a>)</label>
-          <br>
-          <input type="text" onchange="onChangeValue()" id="left-side" placeholder="Left side data"/>
-          <input type="text" onchange="onChangeValue()" id="right-side" placeholder="Right side data"/>
-          <br>
-          <label>Type (0 = normal I-land, 1 = medium I-land, 2 large I-land)</label>
-          <input type="number" onchange="onChangeValue()" placeholder="0, 1 or 2?" id="type-i-land">
-          <br>
-          <label>Duration (Seconds)</label>
-          <input type="number" onchange="onChangeValue()" placeholder="17" id="duration"><label>seconds</label>
-
-          <p>Summary:</p>
-          <ul>
-            <li><i class="bi bi-border-left"></i> Left Side: <span id="left-side-show"></span></li>
-            <li><i class="bi bi-border-right"></i> Right Side: <span id="right-side-show"></span></li>
-            <li><i class="bi bi-question-lg"></i> Type: <span id="type-i-land-show"></span></li>
-            <li><i class="bi bi-stopwatch"></i> Duration: <span id="duration-show"></span></li>
-          </ul>
-          <hr>
-          <a href="#dynamic-island">
+  
+        <div class="custom-zone content" id="i-land-content">
+          <div class="container">
+            <h4>Custom Dynamic I-land</h4>
             <button onclick="onExecuteDynamicILand()">Execute!</button>
-          </a>
+            <br>
+            <hr>
+            <label>Left and Right Data (Can use <a href="https://icons.getbootstrap.com/" target="_blank">bootstrap icons</a>)</label>
+            <br>
+            <input type="text" onchange="onChangeValue()" id="left-side" placeholder="Left side data"/>
+            <input type="text" onchange="onChangeValue()" id="right-side" placeholder="Right side data"/>
+            <br>
+            <label>Type (0 = normal I-land, 1 = medium I-land, 2 large I-land)</label>
+            <input type="number" onchange="onChangeValue()" placeholder="0, 1 or 2?" id="type-i-land">
+            <br>
+            <label>Duration (Seconds)</label>
+            <input type="number" onchange="onChangeValue()" placeholder="17" id="duration"><label>seconds</label>
+  
+            <p>Summary:</p>
+            <ul>
+              <li><i class="bi bi-border-left"></i> Left Side: <span id="left-side-show"></span></li>
+              <li><i class="bi bi-border-right"></i> Right Side: <span id="right-side-show"></span></li>
+              <li><i class="bi bi-question-lg"></i> Type: <span id="type-i-land-show"></span></li>
+              <li><i class="bi bi-stopwatch"></i> Duration: <span id="duration-show"></span></li>
+            </ul>
+            <hr>
+            <a href="#dynamic-island">
+              <button onclick="onExecuteDynamicILand()">Execute!</button>
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div class="custom-zone content" id="settings-content">
-        <div class="container">
-          <h4>Settings</h4>
-          <hr>
-          <label>Background (You can import from website! by paste your url of image below)</label>
-          <br>
-          <input type="text" id="background-input" placeholder="Default : purple background"/>
-          <br>
-          <button onclick="onChangeBackground()">Save</button>
+  
+        <div class="custom-zone content" id="settings-content">
+          <div class="container">
+            <h4>Settings</h4>
+            <hr>
+            <label>Background (You can import from website! by paste your url of image below)</label>
+            <br>
+            <input type="text" id="background-input" placeholder="Default : purple background"/>
+            <br>
+            <button onclick="onChangeBackground()">Save</button>
+          </div>
         </div>
       </div>
 

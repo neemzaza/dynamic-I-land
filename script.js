@@ -43,7 +43,6 @@ const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
         // Activating I-land 250ms
         setTimeout(() => {
             dynamicIsland.classList.add("on-state-lg");
-            dynamicIsland.style.position = "absolute"
         }, 250);
 
     // Active medium i-land
@@ -110,27 +109,25 @@ const onDynamicIslandStateChange = (leftData, rightData, app, duration) => {
             } else if (app.includes(mediumILand)) {
                 dynamicIsland.classList.remove("on-state-md");
         
-                statusRight.children[0].style.animation = "status-icon-appear 1s forwards";
-                statusRight.children[1].style.animation = "status-icon-appear 1s forwards";
+                statusRight.children[0].style.animation = "status-icon-appear .75s forwards";
+                statusRight.children[1].style.animation = "status-icon-appear .75s forwards";
                 
             } else {
                 if (app === "normal") {
                     // statusRight.children[1].style.animation = "state-appear 0.25s forwards";
 
                     // setTimeout(() => {
+                        statusRight.children[0].style.animation = "bouncing 1s forwards";
                         statusRight.children[1].style.animation = "status-icon-appear .5s forwards";
                     // }, 250);
                 }
-                if (app === "medium") {
-                    
-                }
+
             }
 
             document.getElementById("left-data").classList.add("exit");
             document.getElementById("right-data").classList.add("exit");
 
             statusLeft.style.animation = "bouncing 1s forwards";
-            statusRight.children[0].style.animation = "bouncing 1s forwards";
             statusRight.children[2].style.animation = "bouncing 1s forwards";
 
             setTimeout(() => {
